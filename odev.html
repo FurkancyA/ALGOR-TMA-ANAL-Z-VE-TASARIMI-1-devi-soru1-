@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    
+// En büyük sayıyı bulmak için kullanacağım algoritma
+    /*En hızlı algoritma, dizi içindeki en büyük sayıyı bulmak için doğrudan bir iterasyon yapan basit bir döngüdür. Bu, her elemanı sırayla kontrol ederek en büyük sayıyı tutan bir değişkeni günceller.*/
+function findMaxNumber(arr) {
+  let max = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
+}
+
+// 10000 sayılık dizi üzerinde test ediyoruz
+let arr = [];
+for (let i = 0; i < 10000; i++) {
+  arr.push(Math.floor(Math.random() * 10000) + 1);
+}
+
+console.time("findMaxNumber");
+let maxNumber = findMaxNumber(arr);
+console.timeEnd("findMaxNumber");
+console.log("Max number is: ", maxNumber);
+
+
+// BruteForce bir algoritmanın çalışma süresini hesaplayıp ve iki algoritmayı kıyaslayoruz.
+function findMaxNumberBruteForce(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let isMax = true;
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[j] > arr[i]) {
+        isMax = false;
+        break;
+      }
+    }
+    if (isMax) {
+      return arr[i];
+    }
+  }
+}
+
+console.time("findMaxNumberBruteForce");
+let maxNumberBruteForce = findMaxNumberBruteForce(arr);
+console.timeEnd("findMaxNumberBruteForce");
+console.log("Max number (brute force) is: ", maxNumberBruteForce);
+
+</script>
+</html>
